@@ -3,14 +3,14 @@
 This is Social Media App created With Angular & node and mongodb
 
 ## Features
-Secure Authentication with JWT
-ADD/DELETE Post
-ADD Comments
-Image Upload With Cloudinary
-Real Time Chat with other users
-Follow Or Unfollow User
-Real time notifications
-Restful Api is used.
+Secure Authentication with JWT<br>
+ADD/DELETE Post<br>
+ADD Comments<br>
+Image Upload With Cloudinary,<br>
+Real Time Chat with other users<br>
+Follow Or Unfollow User<br>
+Real time notifications<br>
+Restful Api is used.<br>
 
 ## Demo
 ## Main
