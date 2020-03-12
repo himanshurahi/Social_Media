@@ -1,0 +1,107 @@
+<nav class="teal darken-2">
+    <div class="nav-wrapper  container">
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <!-- <li><a [routerLink]="['/',user.user.username]">Profile</a></li> -->
+        <a [routerLink]="['/',user.user.username]" class="brand-logo">MySocialApp</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a [routerLink]="['/dashboard']" routerLinkActive="active">Home</a></li>
+            <li><a [routerLink]="['/',user.user.username]">Profile</a></li>
+            <li><a (click)="Logout()">Logout</a></li>
+            <li> <a class='dropdown-trigger right' data-target='dropdown1'>Notifications&nbsp;<span
+                        class="badge teal white-text">{{count?.length}}</span></a></li>
+            <li> <a class='dropdown-trigger right' data-target='dropdown3'>Messages&nbsp;<span
+                        class="badge teal white-text">{{isReadMsg.length}}</span></a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="right hide-on-large-only">
+
+            <li> <a class='dropdown-trigger right' data-target='dropdown2'>&nbsp;<span
+                        class="badge teal white-text">{{count?.length}}</span></a></li>
+        </ul>
+
+        <!-- Dropdown Structure -->
+        <ul id='dropdown1' class='dropdown-content right'>
+            <li *ngFor="let notification of notifications" [ngClass]="{isRead: !notification.read}"><a href="#!">
+
+                    <img src="https://res.cloudinary.com/dzw9hmcvg/image/upload/v{{notification.userId.picVersion}}/{{notification.userId.picId}}"
+                        style="border-radius: 60%; width: 20px; padding-right: 5px;" />{{notification.message}}</a></li>
+            <li *ngIf="notifications?.length == 0"><a>No Notifications</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li style="padding: 5px;"><button class="waves-effect waves-light btn right" type="button"
+                    (click)='MarkAllRead()'>Mark All Read</button></li>
+        </ul>
+
+
+        <ul id='dropdown2' class='dropdown-content right desktop'>
+            <li *ngFor="let notification of notifications" [ngClass]="{isRead: !notification.read}"><a href="#!"><img
+                        src="https://res.cloudinary.com/dzw9hmcvg/image/upload/v{{notification.userId.picVersion}}/{{notification.userId.picId}}"
+                        style="border-radius: 60%; width: 20px; padding-right: 5px;" />{{notification.message}}</a></li>
+            <li *ngIf="notifications?.length == 0"><a>No Notifications</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li style="padding: 5px;"><button class="waves-effect waves-light btn right" type="button"
+                    (click)='MarkAllRead()'>Mark All Read</button></li>
+        </ul>
+
+
+        <ul id='dropdown3' class='dropdown-content right desktop'>
+
+            <li *ngFor="let chat of chatList">
+                <!-- {{chat  | json}} -->
+                <!-- {{user.user.username | json}} -->
+                <!-- *ngIf="chat.messageId.message[chat.messageId.message.length - 1].recieverId == user.user._id"  -->
+                <!-- {{chat.messageId.message[chat.messageId.message.length - 1].isRead}} -->
+                <a href="#"><img src="https://via.placeholder.com/150"
+                        style="border-radius: 60%; width: 20px;" />{{chat.ReceiverId.username}} <i
+                        *ngIf="chat.messageId.message[chat.messageId.message.length - 1].recieverId == user.user._id"
+                        class="material-icons" style="margin: 0px;">
+                        arrow_right
+                    </i>
+                    <i *ngIf="chat.messageId.message[chat.messageId.message.length - 1].recieverId != user.user._id"
+                        class="material-icons" style="margin: 0px;">
+                        arrow_left
+                    </i>
+
+                </a>
+
+                <span style="color: black; position: relative; top: -24px;"
+                    (click)="goToChatPage(chat.ReceiverId.username)">{{chat.messageId.message[chat.messageId.message.length - 1].body}}
+                    <br>{{fromNowDate(chat.messageId.message[chat.messageId.message.length - 1].createdAt)}}</span>
+            </li>
+            <li class="divider" tabindex="-1"></li>
+
+        </ul>
+
+    </div>
+</nav>
+
+<!-- SIDENAV -->
+<ul id="slide-out" class="sidenav">
+    <li><a [routerLink]="['/dashboard']" routerLinkActive="active">Home</a></li>
+    <li><a [routerLink]="['/',user.user.username]" routerLinkActive="active" >Profile</a></li>
+    <li><a (click)="Logout()">Logout</a></li>
+    <li> <a class='dropdown-trigger' data-target='dropdown3'>Messages&nbsp;<span
+                class="badge teal white-text">{{isReadMsg.length}}</span></a></li>
+</ul>
+
+
+<div class="row my-dash" #mydash>
+    <div class="col s12 m12">
+        <div class="card teal" style="text-align: center;">
+            <div class="row">
+                <div class="col s6 offset-s3" style="text-align: center;">
+                    <div class="card-content white-text">
+                        <span class="card-title">{{user.user.username}}</span>
+                        <img class="center img-responsive circle" width="100"
+                            src="https://res.cloudinary.com/dzw9hmcvg/image/upload/v{{image?.picVersion}}/{{image?.picId}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- {{OnlineUsers | json}} -->
+
+
+<!-- {{notifications | json}} -->

@@ -1,0 +1,33 @@
+<app-header></app-header>
+<div class="row">
+    <div class="container">
+        <div class="col s12 m3 l3">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col s12 m9 l9" *ngIf="followingUserArray?.length != 0">
+            <div class="row">
+                <div class="col s12 m6 l4" *ngFor="let following of followingUserArray">
+                    <div class="card">
+                        <div class="card-image">
+                            <img style="border-radius: 100%; padding: 20px;" src="https://via.placeholder.com/150">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title"
+                                style="word-wrap: break-word;">{{following.userFollowed.username }}</span>
+                            <p>india</p>
+                        </div>
+                        <div class="card-action">
+                            <button class="waves-effect waves-light btn"
+                                (click)='UnfollowUser(following.userFollowed)'>Unfollow </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <p *ngIf="followingUserArray?.length == 0">You Are Not Following Any User Yet.</p>
+
+    </div>
+</div>

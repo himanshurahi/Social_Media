@@ -1,0 +1,29 @@
+<div class="row">
+    <form class="col s12">
+        <!-- <h4>What's in your mind</h4>
+    <hr> -->
+        <div class="row">
+            <form (ngSubmit)='onSubmit(f)' #f='ngForm'>
+                <div class="input-field col s12">
+                    <textarea id="textarea1" class="materialize-textarea" name="postBody" #postBody="ngModel" ngModel
+                        required></textarea>
+                    <label for="textarea1">What's in your mind</label>
+                </div>
+                <div class="col s12">
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <i style="float: right;" class="material-icons">&nbsp;image</i>
+                            <span>Image</span>
+                            <input type="file" ngModel  (change) = 'FileSelected($event)'>
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text"  id="image" >
+                        </div>
+                    </div>
+                    <button type="submit" [disabled]="f.invalid" class="waves-effect waves-light btn">{{posting ? 'Posting' : 'Post'}}</button>
+                </div>
+
+            </form>
+        </div>
+    </form>
+</div>

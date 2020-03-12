@@ -1,0 +1,32 @@
+<app-header (OnUsers) = 'online($event)'></app-header>
+<div class="row">
+    <div class="container">
+        <div class="col s12 m3 l3">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col s12 m9 l9">
+            <div class="row">
+                <div class="col s12 m4" *ngFor="let user of users" >
+                  <div class="card">
+                    <div class="card-image" (click) = 'viewUser(user)'>
+                        <img style="border-radius: 100%; padding: 20px;" class="center"  src="https://res.cloudinary.com/dzw9hmcvg/image/upload/v{{user.picVersion}}/{{user.picId}}">
+                     </div>
+                    <div class="card-content">
+                    <span class="card-title" (click) = 'viewUser(user)' style="cursor: pointer;" >{{user.username}}</span>
+                    <span>  {{checkIfOnline(user.username) ? 'online' : 'offline' }}</span>
+                      <p>india</p>
+                    </div>
+                    <div class="card-action">
+                    <button *ngIf="!checkIsFollowing(userFollowArr,user._id)" class="waves-effect waves-light btn" (click) = 'FollowUser(user._id)' >Follow </button>
+                    <button *ngIf="checkIsFollowing(userFollowArr,user._id)" class="waves-effect waves-light btn" disabled >Following </button>
+                    <a [routerLink]="['/chat', user.username]" routerLinkActive="router-link-active"  style="float: right; cursor: pointer;"><i class="material-icons">
+                        message
+                        </i></a>
+                    </div>
+                    <!-- {{user | json}} -->
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>

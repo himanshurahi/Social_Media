@@ -1,0 +1,30 @@
+require('dotenv').config()
+const express = require('express')
+const app = express()
+const mongoose = require('mongoose')
+const AuthRoutes = require('./routes/AuthRoutes')
+const PostRoutes = require('./routes/PostsRoutes')
+const cors = require('cors')
+const server = require('http').createServer(app)
+const io = require('socket.io').listen(server)
+const dashboardSocket = require('./socket/dashboard.socket')
+const userRoutes = require('./routes/userRoutes')
+const messageRoutes = require('./routes/MessageRoutes')
+const imageRoute = require('./routes/ImageRoutes')
+const PORT = process.env.PORT
+
+mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser : true, useUnifiedTopology : true}).then(() => {
+    console.log('Connected TO DB')
+})
+app.use(express.json({limit: '50mb'}))
+app.use(cors())
+server.listen(PORT, () => {
+    console.log('Server Running on Port : '+ PORT)
+})
+dashboardSocket.userConnected(io)
+
+app.use('/auth',AuthRoutes)
+app.use('/post', PostRoutes)
+app.use('/users', userRoutes)
+app.use('/message', messageRoutes)
+app.use('/image', imageRoute)

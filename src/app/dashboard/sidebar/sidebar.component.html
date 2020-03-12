@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="container">
+        <div class="col s4 m4"  >
+            <a [routerLink]="['',loggedInUser.username]" routerLinkActive="router-link-active"  >Posts<p>{{posts.length}}</p></a>
+        </div>
+        <div class="col s4 m4">
+            <a>Following<p>{{following.length}}</p></a>
+        </div>
+        <!-- <div class="col s4 m4">
+            <a>Followers<p>{{followers.length}}</p></a>
+        </div> -->
+    </div>
+</div>
+
+<div class="collection">
+    <a  [routerLink]="['/dashboard']" routerLinkActive="active"  class="collection-item">Home <i style="float: right;" class="material-icons">home</i></a>
+    <a [routerLink]="['/people']" routerLinkActive="active"  class="collection-item">People <i style="float: right;" class="material-icons">people</i></a>
+    <a [routerLink]="['/following']" routerLinkActive="active"  class="collection-item">Following <i style="float: right;" class="material-icons">send</i></a>
+    <a  [routerLink]="['/followers']" routerLinkActive="active" class="collection-item"  >Followers <i style="float: right;" class="material-icons">send</i></a>
+    <a [routerLink]="['/images']" routerLinkActive="active"  class="collection-item">Photos <i style="float: right;" class="material-icons">photo_camera</i></a>
+    <a [routerLink]="['/notifications']" routerLinkActive="active"  class="collection-item">Notification <i style="float: right;" class="material-icons">add_alert </i></a>
+    <a [routerLink]="['/account/change_password']" routerLinkActive="active"  class="collection-item">Change Password <i style="float: right;" class="material-icons">add_alert </i></a>
+
+</div>

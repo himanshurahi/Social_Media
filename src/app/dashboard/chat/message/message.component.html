@@ -1,0 +1,43 @@
+<div class="card  darken-1" >
+    <div class="card-content srollme" #scrollme >
+
+
+        <div  class="container" *ngFor="let message of messages?.message" [ngClass]="{darker: Ruser?._id != message.recieverId}">
+            <img [src]="Ruser?._id != message.recieverId ? 'https://res.cloudinary.com/dzw9hmcvg/image/upload/v'+Ruser?.picVersion+'/'+Ruser?.picId : 'https://res.cloudinary.com/dzw9hmcvg/image/upload/v'+message?.senderId.picVersion+'/'+message?.senderId.picId" alt="Avatar" [ngClass]="{right: Ruser?._id != message.recieverId}"  style="width:100%;">
+            <!-- <img src="https://res.cloudinary.com/dzw9hmcvg/image/upload/v{{notification.userId.picVersion}}/{{notification.userId.picId}}" alt="Avatar" [ngClass]="{right: Ruser?._id != message.recieverId}"  style="width:100%;"> -->
+            <p>{{message.body}}</p>
+            <span class="time-right" [ngClass]="{'time-left': Ruser?._id != message.recieverId}" >{{message.createdAt}}</span>
+            <!-- {{message.senderId | json}} -->
+        </div>
+
+           
+        <p *ngIf="!messages?.message">No Message</p>
+
+        <!-- <div class="container darker">
+            <img src="http://placehold.it/50x50" alt="Avatar" class="right" style="width:100%;">
+            <p>Hey! I'm fine. Thanks for asking!</p>
+            <span class="time-left">11:01</span>
+        </div>
+
+        {{Ruser?._id}} -->
+
+       
+    <i *ngIf="typing">{{username}} is Typing</i>
+    </div>
+
+    <div class="card-action">
+        <form (ngSubmit) = 'onSubmit(f)' #f='ngForm'>
+            <div class="input-field col s12">
+                <input id="message" type="text" class="validate" name="message" ngModel (keypress) = 'onTyping()'>
+                <label for="message">Message</label>
+            </div>
+           
+            <button class="btn waves-effect waves-light" style="margin-left: 10px;" type="submit" >Send
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
+    </div>
+</div>
+<!-- {{messages | json}}
+
+{{messages | json}} -->

@@ -1,0 +1,36 @@
+<app-header></app-header>
+<div class="row">
+    <div class="container">
+        <div class="col s12 m3 l3">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col s12 m9 l9"  *ngIf="notifications?.length > 0">
+            <div class="row">
+                <div class="col s12 m12 l12" *ngFor="let notification of notifications">
+                    <ul class="collection">
+                        <li class="collection-item avatar">
+                          <img src="https://res.cloudinary.com/dzw9hmcvg/image/upload/v{{notification.userId.picVersion}}/{{notification.userId.picId}}" alt="" class="circle">
+                          <span class="title">{{notification.message}}</span>
+                          <p>First Line <br>
+                             <i>{{fromNowDate(notification.createdAt)}}</i>
+                          </p>
+                          <a href="#!" class="secondary-content"><i class="material-icons">brightness_1</i></a>
+                          <div>
+                            <i class="material-icons" *ngIf="notification.read" style="cursor: pointer; color:lightgray;" >check</i>
+                            <i class="material-icons" *ngIf="!notification.read" style="cursor : pointer;" (click) = 'read(notification)'>check</i>
+                            <i class="material-icons" style="margin-left: 10px; cursor: pointer;" (click) = "deleteNotification(notification)" >delete_forever</i>
+                        </div>
+                        <!-- {{notification | json}} -->
+                                
+                        </li>
+                        
+                      </ul>
+                      
+                </div>
+            </div>
+        </div>
+        <p *ngIf="notifications?.length == 0">No notifications</p>
+        
+    </div>
+</div>
+ <!-- {{notifications | json  }}  -->

@@ -1,0 +1,127 @@
+<app-header></app-header>
+<div class="row">
+    <div class="container">
+        <ul class="tabs" style="margin-top : 5px">
+            <li class="tab col s3"><a class="active" href="#test1">Posts</a></li>
+            <li class="tab col s3"><a href="#test2">Following</a></li>
+            <li class="tab col s3"><a href="#test3">Followers</a></li>
+
+        </ul>
+        <div class="col s12 m4 l4" style="text-align: center; margin-top: 10px;">
+            <img src="https://via.placeholder.com/150" class="circle">
+            <h3>{{username}}</h3>
+            <i class="material-icons">location_on </i> <span> Location : India</span>
+        </div>
+        <div class="col s12 m8 l8" style="margin-top: 5px;">
+
+
+            <div id="test1">
+
+                <div *ngFor="let post of posts">
+                    <ul class="collection" style="border: none;">
+                        <li class="collection-item avatar">
+                            <img src="https://via.placeholder.com/150" alt="" class="circle">
+                            <span class="title">{{post.user.username}}</span>
+                            <p>Username<br>
+                                {{dateFromNow(post.createdAt)}}
+                            </p>
+                            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                        </li>
+
+                        <div class="row">
+                            <div class="col s12 m12">
+                                <div class="card">
+                                    <div class="card-image" style="width: 30%; left: 35%;">
+                                        <img src="https://via.placeholder.com/150" style="padding-top: 20px;">
+
+                                    </div>
+                                    <!-- <span class="card-title">Card Title</span> -->
+                                    <div class="card-content">
+                                        <p>{{post.post}}</p>
+                                    </div>
+                                    <div class="card-action">
+                                        <!-- {{isLiked(post.likes)}} -->
+                                        <i class="material-icons" style="cursor: pointer;"
+                                            [ngClass]="{active1: isLiked(post.likes)}" (click)="likePost(post)">thumb_up
+                                        </i><span
+                                            style="position: absolute; margin-left: 5px;">{{post.likes.length}}</span>
+                                        <i class="material-icons" style="margin-left: 35px; cursor: pointer;">comment
+                                        </i><span
+                                            style="position: absolute; margin-left: 5px;">{{post.comments.length}}</span>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </ul>
+                </div>
+
+
+            </div>
+            <div id="test2" class="col s12">
+                <div class="row">
+                    <div class="col s6" *ngFor="let following of followings">
+                        <div class="card">
+                            <div class="card-image">
+                                <img style="border-radius: 100%; padding: 20px;" src="https://via.placeholder.com/150">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title"
+                                    style="word-wrap: break-word;">{{following.userFollowed.username}}</span>
+                                <p>india</p>
+                            </div>
+                            <div class="card-action">
+                                <!-- <button class="waves-effect waves-light btn"
+                                    [disabled]=isCurrenUser(following.userFollowed)>Unfollow </button> -->
+                                <button *ngIf="isFollowing(following.userFollowed)" class="waves-effect waves-light btn"
+                                    [disabled]=isCurrenUser(following.userFollowed) (click) = "UnfollowUser(following.userFollowed)" >Unfollow </button>
+                                <button *ngIf="!isFollowing(following.userFollowed)"
+                                    class="waves-effect waves-light btn"
+                                    [disabled]=isCurrenUser(following.userFollowed) (click) = "FollowUser(following.userFollowed)" >{{ isCurrenUser(following.userFollowed) ? 'You' :'Follow'}}
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div id="test3" class="col s12">
+                <div class="row">
+                    <div class="col s6" *ngFor="let follower of followers">
+                        <div class="card">
+                            <div class="card-image">
+                                <img style="border-radius: 100%; padding: 20px;" src="https://via.placeholder.com/150">
+                            </div>
+                            <div class="card-content">
+                                <!-- {{isCurrenUser(follower.follower)}} -->
+                                <span class="card-title"
+                                    style="word-wrap: break-word;">{{follower.follower.username}}</span>
+                                <p>india</p>
+                            </div>
+                            <div class="card-action">
+                                <!-- {{isFollowing(follower.follower)}} -->
+                                <button *ngIf="isFollowing(follower.follower)" class="waves-effect waves-light btn"
+                                    [disabled]=isCurrenUser(follower.follower)>Unfollow </button>
+                                <button *ngIf="!isFollowing(follower.follower)" class="waves-effect waves-light btn"
+                                    [disabled]=isCurrenUser(follower.follower)>{{ isCurrenUser(follower.follower) ? 'You' :'Follow'}}
+                                </button>
+                                <!-- {{isFollowing(follower.follower)}} -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>
+<!-- {{notifications | json  }}  -->

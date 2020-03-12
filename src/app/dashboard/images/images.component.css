@@ -1,0 +1,19 @@
+.center {
+    width: 100px;
+    height: 200px;
+    padding: 20px;
+}
+
+.card-image {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media(max-width: 720px) {
+    .card-image {
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
